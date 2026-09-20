@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NeuPath at UB</title>
+<meta name="description" content="NeuPath is a student-led space for neurodivergent students at the University at Buffalo: career readiness, practical resources, and community.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+
+    --blue:#173a8a;
+    --blue-mid:#2563eb;
+    --blue-soft:#e9f0ff;
+    --ink:#102042;
+    --body:#3c4c6b;
+    --bg:#ffffff;
+    --surface:#f6f9ff;
+    --line:#dce6fa;
+    --on-blue:#e9f0ff;
+    --max:1080px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --blue:#5b8cff;
+      --blue-mid:#7aa5ff;
+      --blue-soft:#17233d;
+      --ink:#eef3ff;
+      --body:#b9c6e0;
+      --bg:#0d1526;
+      --surface:#121c31;
+      --line:#22314f;
+      --on-blue:#e9f0ff;
+    }
+  }
+  :root[data-theme="dark"]{
+    --blue:#5b8cff; --blue-mid:#7aa5ff; --blue-soft:#17233d;
+    --ink:#eef3ff; --body:#b9c6e0; --bg:#0d1526; --surface:#121c31;
+    --line:#22314f; --on-blue:#e9f0ff;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(78px + env(safe-area-inset-top,0px))}
+  body{
+    margin:0;background:var(--bg);color:var(--body);
+    font-family:Inter,"Helvetica Neue",Arial,sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%}
+  h1,h2,h3{color:var(--ink);line-height:1.15;margin:0 0 .5em;font-weight:800;letter-spacing:-.02em}
+  h1{font-size:clamp(2.1rem,6vw,3.6rem)}
+  h2{font-size:clamp(1.55rem,4vw,2.4rem)}
+  h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+  p{margin:0 0 1em}
+  a{color:var(--blue)}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+  section{padding:76px 0;border-top:1px solid var(--line)}
+  .eyebrow{
+    display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--blue-mid);margin-bottom:14px;
+  }
+
+  /* nav */
+  header{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;gap:18px;height:78px}
+  .logo{font-weight:800;color:var(--ink);font-size:1.22rem;letter-spacing:-.02em;text-decoration:none}
+  .logo span{color:var(--blue-mid)}
+  .navlinks{margin-left:auto;display:flex;gap:22px;align-items:center}
+  .navlinks a{color:var(--body);text-decoration:none;font-size:.95rem;font-weight:500}
+  .navlinks a:hover{color:var(--blue-mid)}
+  @media(max-width:760px){.navlinks a:not(.btn){display:none}}
+
+  .btn{
+    display:inline-block;background:var(--blue-mid);color:#fff!important;
+    padding:13px 22px;border-radius:999px;text-decoration:none;
+    font-weight:600;font-size:.97rem;border:2px solid var(--blue-mid);
+  }
+  .btn:hover{filter:brightness(1.08)}
+  .btn.ghost{background:transparent;color:var(--blue-mid)!important;border-color:var(--line)}
+  .btn.ghost:hover{border-color:var(--blue-mid)}
+  .btn.light{background:#fff;color:var(--blue)!important;border-color:#fff}
+
+  /* hero */
+  .hero{
+    background:linear-gradient(160deg,#173a8a 0%,#1f4aa8 62%,#2563eb 100%);
+    color:var(--on-blue);border-top:0;padding:96px 0 88px;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;width:560px;height:560px;border-radius:50%;
+    background:rgba(255,255,255,.06);right:-180px;top:-200px;
+  }
+  .hero h1{color:#fff;max-width:14ch;position:relative}
+  .hero .lede{font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:56ch;color:#dbe6ff;position:relative}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;position:relative}
+  .hero .btn.ghost{color:#fff!important;border-color:rgba(255,255,255,.5)}
+  .tagline{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;position:relative}
+  .tagline span{
+    font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    background:rgba(255,255,255,.12);padding:7px 14px;border-radius:999px;color:#fff;
+  }
+
+  /* stat */
+  .statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;margin-top:34px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
+  .stat b{display:block;font-size:clamp(2.4rem,7vw,3.4rem);color:var(--blue-mid);line-height:1;margin-bottom:10px;letter-spacing:-.03em}
+  .stat p{margin:0;font-size:.98rem}
+  .src{font-size:.82rem;color:var(--body);opacity:.75;margin-top:22px}
+
+  .pull{
+    border-left:5px solid var(--blue-mid);padding:6px 0 6px 22px;margin:30px 0 0;
+    font-size:clamp(1.15rem,3vw,1.5rem);font-weight:600;color:var(--ink);max-width:40ch;
+  }
+
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:22px;margin-top:38px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px}
+  .card h3{margin-bottom:8px}
+  .card p{margin:0;font-size:.97rem}
+  .card .tag{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-mid);display:block;margin-bottom:12px}
+
+  ul.checks{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}
+  ul.checks li{display:flex;gap:14px;align-items:flex-start;background:var(--blue-soft);padding:15px 18px;border-radius:14px;color:var(--ink);font-weight:500}
+  ul.checks li::before{content:"";flex:0 0 11px;height:11px;border-radius:50%;background:var(--blue-mid);margin-top:9px}
+
+  /* join */
+  .join{background:var(--surface)}
+  .joincards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px;margin-top:36px}
+  .joincard{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column}
+  .joincard p{flex:1}
+  .joincard .btn{align-self:flex-start;margin-top:10px}
+
+  details{border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px;background:var(--surface)}
+  details summary{cursor:pointer;font-weight:600;color:var(--ink);list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";float:right;color:var(--blue-mid);font-weight:700}
+  details[open] summary::after{content:"\2013"}
+  details p{margin:14px 0 0;font-size:.97rem}
+
+  footer{background:var(--blue);color:#cfdcff;padding:56px 0 40px}
+  footer a{color:#fff}
+  footer .fgrid{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
+  footer h4{color:#fff;margin:0 0 10px;font-size:1.05rem}
+  .disclaimer{font-size:.85rem;opacity:.8;margin-top:30px;border-top:1px solid rgba(255,255,255,.18);padding-top:22px;max-width:70ch}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#top">NeuPath <span>at UB</span></a>
+      <div class="navlinks">
+        <a href="#why">Why</a>
+        <a href="#what">What we do</a>
+        <a href="#programs">Programs</a>
+        <a href="#faq">FAQ</a>
+        <!-- REPLACE the # below with your Student Interest Form link -->
+        <a class="btn" href="#join">Join</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div class="tagline">
+      <span>Career confidence</span><span>Community</span><span>Practical support</span>
+    </div>
+    <h1>A student-led space for neurodivergent UB students.</h1>
+    <p class="lede">NeuPath helps neurodivergent students at the University at Buffalo build career and life skills nobody actually teaches you: networking, interviews, emailing professors, planning, and self-advocacy. All in a lower-pressure, strengths-first way.</p>
+    <div class="cta">
+      <!-- REPLACE href with your Student Interest Form link -->
+      <a class="btn light" href="#join">Join the interest list</a>
+      <!-- REPLACE href with your Founding Team Application link -->
+      <a class="btn ghost" href="#join">Apply to the founding team</a>
+    </div>
+  </div>
+</div>
+
+<section id="why">
+  <div class="wrap">
+    <span class="eyebrow">Why we exist</span>
+    <h2>Colleges have stepped up on mental health. Career readiness never got the same treatment.</h2>
+    <p style="max-width:62ch">Campus counseling, wellness programming, and mental health outreach have all expanded, and students are using them. What still doesn't exist on most campuses is a standard, structured path for learning how to network, interview, ask for help, or plan a semester. Those are the skills that decide what happens after graduation.</p>
+
+    <div class="statgrid">
+      <div class="stat">
+        <b>38%</b>
+        <p>of college students received counseling or therapy in the past year.</p>
+      </div>
+      <div class="stat">
+        <b>61%</b>
+        <p>of students who screened positive for anxiety or depression received counseling, medication, or both.</p>
+      </div>
+      <div class="stat">
+        <b>1 in 5</b>
+        <p>college students identify with ADHD, autism, dyslexia, or a related condition.</p>
+      </div>
+    </div>
+    <p class="src">Sources: Healthy Minds Study, 2024–2025 (84,000+ students across 135 institutions); published research on neurodivergence in higher education.</p>
+
+    <p class="pull">Support for how students feel has grown. Support for what happens next hasn't, and it leaves a lot of us feeling unprepared and scared.</p>
+  </div>
+</section>
+
+<section id="what">
+  <div class="wrap">
+    <span class="eyebrow">What we do</span>
+    <h2>Practical, strengths-first, built with neurodivergent students, not just for them.</h2>
+    <p style="max-width:62ch">Every NeuPath event is designed to send you home with something usable: a template, a script, a connection, a plan, or a resource you didn't know existed. We start from what you're good at, not what you're behind on.</p>
+    <ul class="checks">
+      <li>Résumé and LinkedIn help</li>
+      <li>Networking and interview practice</li>
+      <li>Planning and organization tools</li>
+      <li>Self-advocacy support</li>
+      <li>A community that understands</li>
+    </ul>
+  </div>
+</section>
+
+<section id="programs">
+  <div class="wrap">
+    <span class="eyebrow">Programs</span>
+    <h2>What we're building</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Networking</span>
+        <h3>Neuro-Friendly Networking Nights</h3>
+        <p>Structured, timed, low-noise networking with question cards and scripts. Participation is optional, so you can observe, write, or sit out a round. You leave with a real contact and a follow-up message ready to send.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Communication</span>
+        <h3>Professor Email &amp; Office Hours Bootcamp</h3>
+        <p>Templates and live editing for the emails that are hardest to send: asking for clarification, following up after a rough exam, requesting accommodations, or asking about research. Plus an office-hours script you can actually use.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Career</span>
+        <h3>Strengths First Story Lab</h3>
+        <p>Turn "I'm awkward" into "I'm direct and thoughtful about how I communicate." Map your strengths, then translate them into résumé bullets, a LinkedIn About section, and interview answers.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Executive function</span>
+        <h3>Executive Function Sprint</h3>
+        <p>A short peer sprint on starting tasks, breaking down assignments, planning a realistic week, and recovering after falling behind. Co-working and body-doubling time included.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Campus</span>
+        <h3>Sensory &amp; Study-Space Map</h3>
+        <p>A student-built guide to campus spaces tagged by noise, lighting, crowding, outlets, and best times to go, so you stop losing months finding somewhere you can actually focus.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Always open</span>
+        <h3>Low-barrier ways in</h3>
+        <p>Drop-in hours, one-time workshops, anonymous question forms, and online participation. You don't have to commit to everything, or to anything, to be part of this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="join">
+  <div class="wrap">
+    <span class="eyebrow">Get involved</span>
+    <h2>Help us build NeuPath at UB.</h2>
+    <p style="max-width:58ch">We're at the very beginning, which means the people who show up now get to shape what this becomes.</p>
+    <div class="joincards">
+      <div class="joincard">
+        <h3>Interested in events and resources?</h3>
+        <p>Join the interest list and we'll let you know when workshops, drop-ins, and resources go live. No commitment, and you never have to disclose a diagnosis.</p>
+        <!-- REPLACE href="#" with your Google Form link -->
+        <a class="btn" href="#">Student Interest Form</a>
+      </div>
+      <div class="joincard">
+        <h3>Want to help lead?</h3>
+        <p>We're recruiting a small founding team for outreach, social media, events, design, and workshop facilitation. Neurodivergent students and allies are both welcome.</p>
+        <!-- REPLACE href="#" with your Google Form link -->
+        <a class="btn" href="#">Founding Team Application</a>
+      </div>
+      <div class="joincard">
+        <h3>Staff, faculty, or employer?</h3>
+        <p>We're looking for advisors, campus partners, speakers, and employers who care about neurodiversity and inclusive hiring. We'd love to talk.</p>
+        <!-- REPLACE mailto with your real address -->
+        <a class="btn ghost" href="mailto:youremail@buffalo.edu">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h2>Before you join</h2>
+    <details><summary>Do I need a diagnosis to participate?</summary>
+      <p>No. NeuPath is open to neurodivergent students, students who are questioning whether they might be, and allied students. You will never be asked to disclose a diagnosis.</p></details>
+    <details><summary>What if I don't want to talk in front of people?</summary>
+      <p>That's expected and planned for. You can participate by writing, using the chat, working in a small group, listening quietly, or passing. You don't have to make eye contact, and you can step out at any time without explaining why.</p></details>
+    <details><summary>Is this therapy or a support group?</summary>
+      <p>No. NeuPath is peer support, skill-building, and community. It is not therapy, diagnosis, or crisis counseling. If you need clinical or urgent support, UB Counseling Services and campus resources are the right place, and we can help point you there.</p></details>
+    <details><summary>Do I have to come to everything?</summary>
+      <p>No. Most of what we run is designed as a one-time workshop or a drop-in. Come to one thing, come to all of it, or just use the resources.</p></details>
+    <details><summary>I'm not neurodivergent. Can I still join?</summary>
+      <p>Yes. Allied students in psychology, education, business, public health, social work, and related fields are welcome, especially if you want to help build programming.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>NeuPath at UB</h4>
+        <p style="margin:0;max-width:34ch">Career confidence. Community. Practical support. For neurodivergent students at the University at Buffalo.</p>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <p style="margin:0">
+          <!-- REPLACE with your real handles -->
+          <a href="#">Instagram</a> &nbsp;·&nbsp;
+          <a href="#">LinkedIn</a> &nbsp;·&nbsp;
+          <a href="mailto:youremail@buffalo.edu">Email</a>
+        </p>
+      </div>
+      <div>
+        <h4>Get involved</h4>
+        <p style="margin:0"><a href="#join">Student Interest Form</a><br><a href="#join">Founding Team Application</a></p>
+      </div>
+    </div>
+    <p class="disclaimer">NeuPath is a student-led initiative. It is not a clinical service and does not provide therapy, diagnosis, or crisis support. Campus space descriptions and resource information are based on student experience and are not official statements on behalf of the University at Buffalo.</p>
+  </div>
+</footer>
+
+</body>
+</html>
